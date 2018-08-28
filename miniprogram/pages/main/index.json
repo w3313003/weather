@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "i-icon": "../../common/iview/icon/index"
+  },
+  "disableScroll": true
+}

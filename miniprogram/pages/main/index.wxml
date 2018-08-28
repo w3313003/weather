@@ -1,0 +1,111 @@
+<view class='wrap'>
+  <!-- <image class='bg' src='../../images/thunderstorm.jpg'></image> -->
+  <view class='scrollWrap'>
+    <scroll-view style='height: 100%'>
+      <view 
+        class='sec-main {{weather}} {{isNight ? "night" : "" }}'>
+        <view class="movablewrap" bindtap="getOpenId">
+            <movable-area style="height: 100%; width: 100%;">
+              <movable-view style="width:160rpx;height: 160rpx"  x="{{x}}" y="{{y}}" direction="all">
+                  <view class="userinfo">
+                      <view class="userinfo-avatar">
+                        <open-data  type="userAvatarUrl"></open-data>
+                      </view>
+                      <view class="userinfo-nickname">
+                        <open-data type="userNickName"></open-data>
+                      </view>
+                    </view>
+              </movable-view>
+            </movable-area>
+        </view>
+        <view class='cityTip' style='position:relative; z-index: 2'>
+          <image bindtap="chooseCity" src="../../images/icon/choose.png"></image>
+          <view class='city' bindtap="chooseCity">
+            {{currentCityInfo.city}}
+          </view>
+          <view class='tip' bindtap='relocate'>
+            重新定位
+          </view>
+        </view>
+        <view class='weather' style='position:relative; z-index: 2'>
+          <view class='detail'>
+            <view class='temp'>
+              {{currentCityInfo.temperature}}
+            </view>
+            <view style='line-height: 150rpx'>
+            °C
+            </view>
+            <view class='zh-cn'>
+              <text>{{currentCityInfo.weather}}</text>
+            </view>
+          </view>
+          <view class='other_info'>
+            <view class="line">
+              <view class="iconWrap">
+                <image src="../../images/wind.png"></image>
+              </view>
+              <view class="text">风向：{{currentCityInfo.winddirection}}风</view>
+              <view class="text">风力：{{currentCityInfo.windpower}}级</view>
+            </view>
+            <view class="line" style="margin: 20rpx 0 30rpx">
+                <view class="iconWrap">
+                  <image src="../../images/humidity.png"></image>
+                </view>
+                <view class="text">湿度：{{currentCityInfo.humidity}}%</view>
+              </view>
+          </view>
+          <view class="time">
+            数据更新时间：{{currentCityInfo.reporttime}}
+          </view>
+        </view>
+        <view class='ct-landscape' wx:if="{{weather === 'sunny' || weather === 'cloudy'}}">
+          <image class='layer layer1 {{isNight ? "night" : ""}}' 
+            src='{{isNight ? "../../images/night_layer1.png" : "../../images/layer1.png"}}'></image>
+          <image class='layer layer2 {{isNight ? "night" : ""}}' 
+            src='{{isNight ? "../../images/night_layer2.png" : "../../images/layer2.png"}}'></image>
+          <image class='layer n ' wx:if="{{isNight}}"
+            src="../../images/night_layer3.png"></image>
+          <image 
+            wx:if="{{weather === 'cloudy'}}" 
+            class='layer layer3 {{isNight ? "night" : ""}}' 
+            src='../../images/layer3.png'></image>
+        </view>
+        <view class='ct-landscape' wx:if="{{weather === 'overcast' || weather === 'rain'}}">
+            <image class='layer layer1 {{isNight ? "night_rain" : ""}}' 
+              src="../../images/night_layer1_rain.png"></image>
+            <image class='layer layer2 {{isNight ? "night" : ""}}' 
+              src='{{isNight ? "../../images/night_layer2.png" : "../../images/layer2.png"}}'></image>
+            <image class='layer n' style="bottom: -180rpx; z-index: 0;height:480rpx" wx:if="{{isNight}}"
+              src="../../images/night_layer_rain.png"></image>
+            <image 
+              wx:if="{{weather === 'cloudy'}}" 
+              class='layer layer3 {{isNight ? "night" : ""}}' 
+              src='../../images/layer3.png'></image>
+          </view>
+      </view>      
+      <view class="forecast">
+        <view class="item" 
+          wx:for="{{forecast.casts}}"
+          wx:for-item="item"
+          wx:for-index="index"
+          wx:key="{{index}}"
+        >
+          <view class="date">
+            <view>
+                {{index === 0 ? "今天" : 
+                index === 1 ? "明天" : 
+                index === 2 ? "后天" : '周' + item.week
+              }}
+            </view>
+            <view>
+              {{item.day}}
+            </view>
+          </view> 
+          <view class="dayweather">
+            {{item.dayweather}}
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

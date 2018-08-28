@@ -1,0 +1,41 @@
+.wrap, page {
+  width: 100%;
+  height: 100%;
+}
+.search {
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.search .inner {
+  width: 90%;
+  height: 60rpx;
+  background-color: #ddd;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  align-items: center;
+  font-size: 28rpx;
+}
+.search .inner input {
+  flex: 0 0 85%;
+}
+.i-index-demo{
+    width:100%;
+    height: calc(100% - 80rpx);
+}
+.i-index-demo-item{
+    padding:10px;
+    border-bottom:#ddd solid 1rpx;
+    font-size:14px;
+}
+.resultWrap {
+    height: calc(100% - 80rpx);
+}
+.empty {
+  text-align: center;
+  color: #bbb8b8;
+}

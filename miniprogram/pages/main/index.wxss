@@ -1,0 +1,230 @@
+.wrap {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+Page {
+    background-color: #f4f4f4
+}
+.wrap image.bg {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.scrollWrap {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.cityTip {
+    display: flex;
+    align-items: center;
+}
+
+.cityTip image {
+    width: 30rpx;
+    height: 30rpx;
+}
+
+.city {
+    color: #fff;
+    font-size: 32rpx;
+    margin-left: 15rpx;
+}
+
+.tip {
+    color: #dcdcdc;
+    font-size: 26rpx;
+    margin-left: 15rpx;
+}
+
+.weather {
+    margin-top: 30rpx;
+    color: #fff;
+}
+
+.weather .detail {
+    display: flex;
+}
+
+.weather .detail .temp {
+    font-size: 180rpx;
+    font-weight: 400;
+}
+
+.weather .detail .zh-cn {
+    margin-left: 20rpx;
+    display: flex;
+    align-items: flex-end;
+    box-sizing: border-box;
+    padding-bottom: 50rpx;
+}
+
+.time {
+    color: #dcdcdc;
+    font-size: 26rpx;
+}
+
+.avatar {
+    width: 20rpx;
+    height: 20rpx;
+}
+
+.sec-main {
+    height: 850rpx;
+    box-sizing: border-box;
+    padding: 20rpx;
+    background-image: linear-gradient(-45deg, #50ade8, #7ae0fa);
+    position: relative;
+}
+.sec-main.night {
+    background-image: -webkit-linear-gradient(-90deg,#313877,#44abec)
+}
+
+.sec-main.sunny,
+.sec-main.cloudy {
+    background-image: linear-gradient(-45deg, #50ade8, #7ae0fa);
+}
+.sec-main.rain {
+    background-image: -webkit-linear-gradient(-90deg,#43697f,#abd2d7);
+}
+.sec-main.sunny.night,
+.sec-main.cloudy.night {
+    background-image: -webkit-linear-gradient(-90deg,#313877,#44abec)
+}
+
+.sec-main.overcast {
+    background-image: linear-gradient(0deg,#86c3ca,#b5e9e8);
+}
+.sec-main.overcast.night {
+    background-image: -webkit-linear-gradient(-90deg,#43697f,#abd2d7);
+}
+
+.sec-main .ct-landscape {
+    width: 100%;
+    overflow: hidden;
+    z-index: 1;
+    position: absolute;
+    bottom: 0;
+    top: 60px;
+    left: 0;
+}
+
+.sec-main .ct-landscape .layer {
+    position: absolute;
+    width: 100%;
+}
+
+.sec-main .ct-landscape .layer1 {
+    height: 180rpx;
+    bottom: 0;
+    z-index: 2;
+}
+.sec-main .ct-landscape .layer1.night {
+    height: 100%;
+    bottom: 0;
+    z-index: 3;
+}
+.sec-main .ct-landscape .layer1.night_rain {
+    bottom: 0;
+    z-index: 3;
+}
+.sec-main .ct-landscape .n {
+    height: 100%;
+    bottom: 0;
+    z-index: 2;
+}
+.sec-main .ct-landscape .layer2 {
+    height: 180rpx;
+    bottom: 0;
+    z-index: 1;
+}
+.sec-main .ct-landscape .layer2.night {
+    height: 100%;
+    bottom: 0;
+    z-index: 1;
+}
+
+.sec-main .ct-landscape .layer3 {
+    bottom: 0px;
+    z-index: 1;
+}
+.other_info .line {
+    display: flex;
+    align-items: center;
+    font-size: 28rpx;
+}
+.other_info .line .text {
+    margin-left: 30rpx;
+}
+.other_info .line .iconWrap {
+    width: 50rpx;
+    height: 50rpx;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255, .5)
+}
+.other_info .line image {
+    width: 35rpx;
+    height: 35rpx;
+}
+
+.movablewrap {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 380rpx;
+    height: 580rpx;
+    z-index: 10;
+}
+.userinfo {
+    position: relative;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.userinfo-avatar {
+    overflow: hidden;
+    display: block;
+    width: 70rpx;
+    height: 70rpx;
+    border-radius: 50%;
+    margin: 10rpx;
+    border: 2px solid #fff;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+}
+.userinfo .userinfo-nickname {
+    font-size: 25rpx;
+}
+.forecast {
+  margin-top: 20rpx;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+}
+.forecast > view {
+    flex: 1;
+}
+.forecast .date {
+    font-size: 24rpx;
+    margin-bottom: 14rpx;
+}
+.forecast .date > view {
+    text-align: center;
+    color: #999
+}
+.dayweather {
+    font-size: 28rpx;
+    color: #434343;
+    line-height: 28rpx;
+    height: 28rpx;
+    margin-bottom: 28rpx;
+    text-align: center;
+}

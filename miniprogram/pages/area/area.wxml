@@ -1,0 +1,52 @@
+<view class='wrap'>
+  <view class='search'>
+    <view class='inner'>
+        <input placeholder="请输入大陆城市名称(支持拼音及汉字查询)"
+          bindinput="inputHandler"
+        />
+        <i-icon type="search" size="28" color="#80848f" />
+    </view>
+  </view>
+  <view wx:if='{{!showResult}}' class="i-index-demo">
+      <i-index height="100%" bind:change="onChange">
+          <i-index-item 
+              wx:for="{{ cities }}" 
+              wx:for-index="index" 
+              wx:key="{{index}}" 
+              wx:for-item="item" name="{{item.key}}
+              diff="{{40}}"
+              >
+              <view 
+                  bind:tap='selectHandler'
+                  class="i-index-demo-item" 
+                  wx:for="{{item.list}}" 
+                  wx:for-index="in"
+                  data-city='{{it}}'
+                  wx:key="{{in}}" 
+                  wx:for-item="it">
+                  {{it.name}}
+              </view>
+          </i-index-item>
+      </i-index>
+  </view>
+  <view wx:else class="resultWrap">
+    <scroll-view
+      scroll-y
+      style="height: 100%"
+      wx:if="{{searchResult.length > 0}}"
+    >
+      <view class='i-index-demo-item'
+        wx:for="{{searchResult}}"
+        wx:for-item="item"
+        wx:for-index="index"
+        data-city='{{item}}'
+        bind:tap='selectHandler'
+      >
+        {{item.name}}
+      </view>
+    </scroll-view>
+    <view wx:else class='empty' style='text-algin:center'>
+      暂无数据
+    </view>
+  </view>
+</view>

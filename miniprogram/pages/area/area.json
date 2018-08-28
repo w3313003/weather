@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "i-card": "../../common/iview/card/index",
+    "i-index": "../../common/iview/index/index",
+    "i-index-item": "../../common/iview/index-item/index",
+    "i-icon": "../../common/iview/icon/index"
+  },
+  "disableScroll": true
+}
