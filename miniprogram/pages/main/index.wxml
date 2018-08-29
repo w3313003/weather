@@ -116,6 +116,12 @@
                     </view>
                 </view>
             </view>
+            <button 
+              open-type="getUserInfo" 
+              bindgetuserinfo="onGetUserInfo"
+            >
+                获取有害信息
+            </button>
         </scroll-view>
     </view>
 </view>
