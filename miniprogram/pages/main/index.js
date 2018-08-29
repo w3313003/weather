@@ -23,6 +23,18 @@ Page({
         });
         wx.clearStorageSync();
         this.getWeather("").then(_ => {
+            getWeather("", "forecast").then(res => {
+              console.log(res);
+              if (res) {
+                res.forecast.casts.forEach(v => {
+                  v.week = new Date(v.date.replace(/\-/g, "/")).getDay();
+                  v.day = v.date.slice(5);
+                })
+                this.setData({
+                  forecast: res.forecast,
+                })
+              }
+            })
             wx.hideLoading();
             wx.showToast({
                 title: '定位成功',
