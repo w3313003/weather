@@ -5,5 +5,6 @@
     "i-index-item": "../../common/iview/index-item/index",
     "i-icon": "../../common/iview/icon/index"
   },
-  "disableScroll": true
+  "disableScroll": true,
+  "navigationBarTitleText": "选择地区"
 }

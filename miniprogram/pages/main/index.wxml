@@ -1,24 +1,32 @@
 <view class='wrap'>
     <!-- <image class='bg' src='../../images/thunderstorm.jpg'></image> -->
     <view class='scrollWrap'>
-        <scroll-view style='height: 100%' scroll-y="{{true}}">
+        <view  scroll-top="{{top}}"	style='height: 100%' scroll-y="{{true}}">
             <view>
                 <view class='sec-main {{weather}} {{isNight ? "night" : "" }}'>
-                    <view class="movablewrap" bindtap="getOpenId">
+                    <view class="movablewrap">
                         <movable-area style="height: 100%; width: 100%;">
                             <movable-view style="width:160rpx;height: 160rpx" x="{{x}}" y="{{y}}" direction="all">
-                                <view class="userinfo">
-                                    <view class="userinfo-avatar">
-                                        <open-data type="userAvatarUrl"></open-data>
+                                <view class="warp" style="position: relative">
+                                    <view class="userinfo" catch:tap="toggle_ball">
+                                        <view class="userinfo-avatar">
+                                            <open-data type="userAvatarUrl"></open-data>
+                                        </view>
                                     </view>
-                                    <view class="userinfo-nickname">
-                                        <open-data type="userNickName"></open-data>
+                                    <view catch:tap="navigateTo" data-type="game" class="ball" animation="{{animationOne}}">
+                                        <image class="game" src="../../images/game.png"></image>
+                                    </view>
+                                    <view catch:tap="navigateTo" data-type="setting" class="ball" animation="{{animationTwo}}">
+                                        <image class="setting" src="../../images/setting.png"></image>
+                                    </view>
+                                    <view catch:tap="navigateTo" data-type="person" class="ball" animation="{{animationThree}}">
+                                        <image class="person" src="../../images/person.png"></image>
                                     </view>
                                 </view>
                             </movable-view>
                         </movable-area>
                     </view>
-                    <view class='cityTip' style='position:relative; z-index: 2'>
+                    <view class='cityTip' style='position:relative; z-index: 20'>
                         <image bindtap="chooseCity" src="../../images/icon/choose.png"></image>
                         <view class='city' bindtap="chooseCity">
                             {{currentCityInfo.city}}
@@ -74,6 +82,10 @@
                 </view>
             </view>
             <view class="forecast">
+                <view class="echart_wrap">
+                    <tempChart id='temp_chart' xAxisArr="{{xAxisArr}}" dayTemp="{{dayTemp}}" nightTemp="{{nightTemp}}">
+                    </tempChart>
+                </view>
                 <view class="item" wx:for="{{forecast.casts}}" wx:for-item="item" wx:for-index="index" wx:key="{{index}}">
                     <view class="date">
                         <view>
@@ -99,7 +111,13 @@
                     </view>
                     <image class='dayIcon' src='{{"../../images/" + item.dayweather + ".png"}}'>
                     </image>
-                    <view class='block' style="height: 100rpx;">
+                    <view class="daytemp">
+                        {{item.daytemp}}°C
+                    </view>
+                    <view class='block' style="height: 200rpx;">
+                    </view>
+                    <view class="nighttemp">
+                        {{item.nighttemp}}°C
                     </view>
                     <image class='nightIcon' src='{{"../../images/" + item.nightweather + ".png"}}'>
                     </image>
@@ -116,12 +134,6 @@
                     </view>
                 </view>
             </view>
-            <button 
-              open-type="getUserInfo" 
-              bindgetuserinfo="onGetUserInfo"
-            >
-                获取有害信息
-            </button>
-        </scroll-view>
+        </view>
     </view>
 </view>

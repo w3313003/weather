@@ -1,0 +1,24 @@
+<view class="wrap">
+    <view class="userInfo">
+        <div class='wave -one'></div>
+        <div class='wave -two'></div>
+        <div class='wave -three'></div>
+        <view class="before"></view>
+        <view class="authBtn"  wx:if="{{needAuth}}">
+            <button
+                type="primary" 
+                open-type="getUserInfo" 
+                bindgetuserinfo="onGetUserInfo"
+                >
+              点击获取用户信息
+            </button>
+        </view>
+        <view wx:else class="avatar">
+            <image class="avatat_img" src="{{userInfo.avatarUrl}}"></image>
+            <view class="nickname">
+                {{userInfo.nickName}} 
+                <image class="gender" src="{{userInfo.gender === 1 ? '../../images/man.png' : '../../images/women.png'}}"></image>
+            </view>
+        </view>
+    </view>
+</view>

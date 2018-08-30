@@ -9,14 +9,11 @@
  * - 经过微信鉴权直接可信的用户唯一标识 openid 
  * 
  */
-exports.main = (event, context) => {
-  console.log(event)
-  console.log(context)
-
+exports.main = async (event, context) => {
   // 可执行其他自定义逻辑
   // console.log 的内容可以在云开发云函数调用日志查看
-
   return {
     openid: event.userInfo.openId,
+    userInfo: event.userInfo
   }
 }

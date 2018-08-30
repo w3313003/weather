@@ -1,6 +1,8 @@
 {
   "usingComponents": {
-    "i-icon": "../../common/iview/icon/index"
+    "i-icon": "../../common/iview/icon/index",
+    "tempChart": "../../common/temp/temp"
   },
-  "disableScroll": true
+  "disableScroll": false,
+  "title": "首页"
 }

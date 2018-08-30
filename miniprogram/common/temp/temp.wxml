@@ -1,0 +1,3 @@
+<view class="container">
+    <ec-canvas id="ec" bind:render="render" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
+</view>

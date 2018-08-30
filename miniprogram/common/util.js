@@ -36,25 +36,49 @@ export function getAreaInfo(areaName, subdistrict) {
  * @param {string} [type='live or forecast'] live实时天气 forecast预报天气
  * @returns object 天气信息
  */
-export function getWeather(adcode, type = 'live') {
+export function getWeather(city, type = 'live') {
     return new Promise((resolve, reject) => {
         const myAmapFun = new amapFile.AMapWX({
             key: map_xcxKey
         });
-        myAmapFun.getWeather({
-            type,
-            city: adcode,
-            success(res) {
-                resolve(res);
-            },
-            fail(error) {
-                wx.showToast({
-                    title: '获取天气信息失败',
-                    duration: 1000
-                })
-                reject(error);
-            }
-        })
+        if(city) {
+            getAreaInfo(city).then(res => {
+                if(res) {
+                    const queryCode = res.districts[0].adcode;
+                    myAmapFun.getWeather({
+                        type,
+                        city: queryCode,
+                        success(res) {
+                            resolve(res);
+                        },
+                        fail(info) {
+                            wx.showToast({
+                                title: '获取天气信息失败',
+                                duration: 1000
+                            })
+                            reject(info);
+                        }
+                    })
+                } else {
+                    reject({message: `未查询到${city}地区信息`})
+                }
+            })
+        } else {
+            myAmapFun.getWeather({
+                type,
+                city: "",
+                success(res) {
+                    resolve(res);
+                },
+                fail(info) {
+                    wx.showToast({
+                        title: '获取天气信息失败',
+                        duration: 1000
+                    })
+                    reject(info);
+                }
+            })
+        }
     })
 
 }

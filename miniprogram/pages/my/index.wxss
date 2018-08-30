@@ -1,0 +1,99 @@
+.userInfo {
+    width: 100vw;
+    height: 550rpx;
+    background: lighten(#f0f4c3, 10%);
+    position: relative;
+    overflow: hidden;
+    transform: translate3d(0, 0, 0);
+    box-shadow: 0 0 15rpx #dcdcdc; 
+}
+.before {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #ee88aa, rgba(221, 238, 255, 0) 80%, rgba(255, 255, 255, 0.5));
+    z-index: 200;
+    transform: translate3d(0, 0, 0);
+}
+.avatar {
+    position: absolute;
+    left: 0;
+    top: 100rpx;
+    width: 100%;
+    z-index: 1;
+    text-align: center;
+    transform: translate3d(0, 0, 0);
+    color: white;
+    text-shadow: 0 1px 0 rgba(black, .1);
+}
+
+.avatar image.avatat_img {
+    width: 150rpx;
+    height: 150rpx;
+    display: block;
+    border-radius: 50%;
+    margin: auto;
+    box-shadow: 0 0 15rpx #fff;
+}
+
+.avatar .nickname {
+    color: #fff;
+    font-size: 35rpx;
+    text-align: center;
+    margin-top: 25rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.avatar .nickname .gender {
+    width: 40rpx;
+    margin-left: 20rpx;
+    height: 40rpx;
+    border-radius: 50%;
+    box-shadow: 0 0 15rpx #fff;
+}
+.wave {
+    opacity: .4;
+    position: absolute;
+    top: 3%;
+    left: 50%;
+    background: #0af;
+    width: 500px;
+    height: 500px;
+    margin-left: -250px;
+    margin-top: -250px;
+    transform-origin: 50% 48%;
+    border-radius: 43%;
+    animation: drift 6000ms infinite linear;
+}
+
+.wave.-three {
+    animation: drift 5000ms infinite linear;
+}
+
+.wave.-two {
+    animation: drift 7000ms infinite linear;
+    opacity: .1;
+    background: yellow;
+}
+
+
+
+@keyframes drift {
+    from {
+        transform: rotate(0deg);
+    }
+
+    from {
+        transform: rotate(360deg);
+    }
+}
+
+.authBtn {
+    position: absolute;
+    z-index: 200;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

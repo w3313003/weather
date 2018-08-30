@@ -1,20 +1,14 @@
 {
   "pages": [
     "pages/main/index",
-    "pages/area/area",
-    "pages/index/index",
-    "pages/userConsole/userConsole",
-    "pages/storageConsole/storageConsole",
-    "pages/databaseGuide/databaseGuide",
-    "pages/addFunction/addFunction",
-    "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib"
+    "pages/my/index",
+    "pages/area/area"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "zj_weather",
+    "navigationBarTitleText": "fresh天气",
     "navigationBarTextStyle": "black"
   }
 }

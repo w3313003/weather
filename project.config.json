@@ -11,7 +11,7 @@
 	},
 	"appid": "wx3cf4745f9a700d71",
 	"projectname": "weather",
-	"libVersion": "2.2.3",
+	"libVersion": "2.2.4",
 	"condition": {
 		"search": {
 			"current": -1,

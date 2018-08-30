@@ -3,6 +3,7 @@
         scroll-y 
         style="{{parse.setScrollStyle(height)}}" 
         bindscroll="handlerScroll"
+        enable-back-to-top="{{true}}"
         scroll-top="{{scrollTop}}"
         >
         <slot></slot>  

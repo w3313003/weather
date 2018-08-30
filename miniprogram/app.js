@@ -7,7 +7,6 @@ App({
     } else {
       wx.cloud.init()
     }
-
     this.globalData = {}
   }
 })
