@@ -179,10 +179,10 @@ Page {
 .movablewrap {
     position: fixed;
     right: 0;
-    top: 0;
+    top: 130rpx;
     width: 380rpx;
     height: 580rpx;
-    z-index: 19;
+    z-index: 21;
 }
 .userinfo {
     position: relative;
@@ -232,6 +232,7 @@ Page {
     margin: 10rpx;
     border: 2px solid #fff;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    animation: scale 2000ms infinite linear
 }
 .userinfo .userinfo-nickname {
     font-size: 25rpx;
@@ -307,4 +308,15 @@ Page {
 }
 .daytemp {
     margin-top: 10rpx;
+}
+@keyframes scale {
+  0% {
+        transform: scale(1);
+  }
+  50% {
+      transform: scale(1.2);
+  }
+  100% {
+      transform: scale(1);
+  }
 }

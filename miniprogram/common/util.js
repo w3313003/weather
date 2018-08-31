@@ -53,7 +53,8 @@ export function getWeather(city, type = 'live') {
                         },
                         fail(info) {
                             wx.showToast({
-                                title: '获取天气信息失败',
+                                title: '获取信息失败',
+                                icon: "fail",
                                 duration: 1000
                             })
                             reject(info);
@@ -66,13 +67,13 @@ export function getWeather(city, type = 'live') {
         } else {
             myAmapFun.getWeather({
                 type,
-                city: "",
                 success(res) {
                     resolve(res);
                 },
                 fail(info) {
                     wx.showToast({
-                        title: '获取天气信息失败',
+                        title: '获取信息失败',
+                        icon: "fail",
                         duration: 1000
                     })
                     reject(info);

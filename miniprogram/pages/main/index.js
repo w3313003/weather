@@ -25,7 +25,7 @@ Page({
     relocate() {
         wx.clearStorageSync();
         this._initHandler("重新定位中").then(res => {
-            if(res){
+            if (res) {
                 wx.showToast({
                     title: '定位成功',
                     icon: 'success',
@@ -44,23 +44,37 @@ Page({
         return getWeather(city).then(res => {
             const date = res.liveData.reporttime.replace(/\-/g, "/");
             let weather;
-            if(res.weather.data === "晴") {
+            if (res.weather.data === "晴") {
                 weather = "sunny"
-            } else if(res.weather.data === "多云") {
+            } else if (res.weather.data === "多云") {
                 weather = "cloudy"
-            } else if(res.weather.data === "阴") {
+            } else if (res.weather.data === "阴") {
                 weather = "overcast"
-            } else if(["中雨", "小雨", "大雨", "阵雨"].includes(res.weather.data)) {
+            } else if (["中雨", "小雨", "大雨", "阵雨"].includes(res.weather.data)) {
                 weather = "rain"
             } else {
                 weather = ""
             }
             this.setData({
                 currentCityInfo: res.liveData,
-                isNight: new Date(date).getHours() >= 18 ||  new Date(date).getHours() <= 6,
+                isNight: new Date(date).getHours() >= 18 || new Date(date).getHours() <= 6,
                 weather,
             });
-        });
+            return true;
+        }).catch(e => {
+            console.log(e);
+            if(e.errMsg.includes("getLocation:fail")) {
+                wx.showModal({
+                    title: "自动定位失败",
+                    content: "是否尝试手动选择地址?",
+                    success:() => {
+                        this.chooseCity()
+                    }
+                });
+            }
+            
+            return false;
+        });;
     },
     getOpenId() {
         wx.cloud.callFunction({
@@ -68,18 +82,17 @@ Page({
             data: {},
             success(res) {
                 app.globalData.openid = res.result.openid;
-                console.log(res);
             }
         })
     },
     chooseCity() {
         wx.redirectTo({
-          url: '/pages/area/area'
+            url: '/pages/area/area'
         })
     },
     navigateTo({currentTarget}) {
         const { type } = currentTarget.dataset;
-        if(type === "person") {
+        if (type === "person") {
             wx.navigateTo({
                 url: '/pages/my/index'
             });
@@ -90,7 +103,7 @@ Page({
             image: `../../images/${type}.png`,
             duration: 1500,
             mask: true,
-            success:() => {
+            success: () => {
                 setTimeout(() => {
                     this.takeback()
                     this.setData({
@@ -101,7 +114,7 @@ Page({
         })
     },
     toggle_ball() {
-        if(!this.data.isPop) {
+        if (!this.data.isPop) {
             this.pop()
             this.setData({
                 isPop: true
@@ -164,10 +177,12 @@ Page({
             mask: true
         });
         return this.getWeather(city).then(_ => {
+            if(!_) {
+                return false
+            };
             return getWeather(city, "forecast").then(res => {
-                console.log(res);
                 wx.hideLoading();
-                if(res) {
+                if (res) {
                     xAxisArr.length = 0;
                     dayTemp.length = 0;
                     nightTemp.length = 0;
@@ -178,7 +193,6 @@ Page({
                         v.week = new Date(v.date.replace(/\-/g, "/")).getDay();
                         v.day = v.date.slice(5);
                     });
-                    console.log(dayTemp);
                     this.setData({
                         forecast: res.forecast,
                         dayTemp,
@@ -187,16 +201,28 @@ Page({
                     });
                     setTimeout(() => {
                         this.selectComponent("#temp_chart").render();
-                    }, 100);
+                    }, 500);
                     return true
                 };
                 return false;
             })
         })
     },
-    onShow: function () {
+    onLoad() {
+        wx.getSetting({
+            success(res) {
+                if(!res.authSetting["scope.userLocation"]) {
+                    wx.authorize({
+                        scope: "scope.userLocation",
+                        success() {
+                            wx.getLocation();
+                        }
+                    })
+                }
+            }
+        });
         this._initHandler().then(res => {
-            if(!res) {
+            if (!res) {
                 wx.showToast({
                     title: '加载失败',
                     icon: 'fail',
@@ -205,9 +231,24 @@ Page({
             }
         });
     },
+    onShow: function () {
+        const needRefresh = wx.getStorageSync("needRefresh");
+        if (needRefresh) {
+            this._initHandler().then(res => {
+                if (!res) {
+                    wx.showToast({
+                        title: '加载失败',
+                        icon: 'fail',
+                        duration: 1500
+                    })
+                }
+            });
+            wx.clearStorageSync("needRefresh");
+        }
+    },
     refresh() {
         this._initHandler().then(res => {
-            if(res) {
+            if (res) {
                 wx.showToast({
                     title: '刷新成功',
                     icon: 'success',
@@ -226,15 +267,7 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh() {
-        this._initHandler().then(res => {
-            if(!res) {
-                wx.showToast({
-                    title: '加载失败',
-                    icon: 'fail',
-                    duration: 1500
-                })
-            }
-        });
+        this.refresh();
     },
 
     /**

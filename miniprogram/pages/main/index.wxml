@@ -3,7 +3,7 @@
     <view class='scrollWrap'>
         <view  scroll-top="{{top}}"	style='height: 100%' scroll-y="{{true}}">
             <view>
-                <view class='sec-main {{weather}} {{isNight ? "night" : "" }}'>
+                <view style="padding-top:150rpx" class='sec-main {{weather}} {{isNight ? "night" : "" }}'>
                     <view class="movablewrap">
                         <movable-area style="height: 100%; width: 100%;">
                             <movable-view style="width:160rpx;height: 160rpx" x="{{x}}" y="{{y}}" direction="all">

@@ -98,7 +98,6 @@ Component({
                     width: width,
                     height: height
                 });
-                console.log(this.data);
                 setOption(chart, this.data.dayTemp, this.data.nightTemp, this.data.xAxis);
                 this.chart = chart;
                 this.setData({

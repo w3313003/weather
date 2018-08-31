@@ -2,6 +2,9 @@
   width: 100%;
   height: 100%;
 }
+page {
+  padding-top: 160rpx;
+}
 .search {
   height: 80rpx;
   display: flex;
