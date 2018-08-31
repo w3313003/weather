@@ -4,7 +4,8 @@ const wxCharts = require("../../common/sdk/wx_chart");
 import {
     map_xcxKey,
     getAreaInfo,
-    getWeather
+    getWeather,
+    translate
 } from "../../common/util";
 const dayTemp = [];
 const nightTemp = [];
@@ -18,7 +19,7 @@ Page({
         currentCity: {},
         weather: "",
         x: 300,
-        y: 20,
+        y: 30,
         top: 0,
         isPop: false
     },
@@ -62,7 +63,6 @@ Page({
             });
             return true;
         }).catch(e => {
-            console.log(e);
             if(e.errMsg.includes("getLocation:fail")) {
                 wx.showModal({
                     title: "自动定位失败",
@@ -191,6 +191,8 @@ Page({
                         dayTemp.push(v.daytemp);
                         nightTemp.push(v.nighttemp);
                         v.week = new Date(v.date.replace(/\-/g, "/")).getDay();
+                        v.day_weather = translate(v.dayweather);
+                        v.night_weather = translate(v.nightweather);
                         v.day = v.date.slice(5);
                     });
                     this.setData({

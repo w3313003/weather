@@ -34,7 +34,7 @@ export function getAreaInfo(areaName, subdistrict) {
  * @export
  * @param {*} adcode
  * @param {string} [type='live or forecast'] live实时天气 forecast预报天气
- * @returns object 天气信息
+ * @returns promise 天气信息
  */
 export function getWeather(city, type = 'live') {
     return new Promise((resolve, reject) => {
@@ -82,4 +82,55 @@ export function getWeather(city, type = 'live') {
         }
     })
 
-}
+};
+
+export function translate(keywords, type = "cn") {
+    const mapList = [
+        {
+            weather_cn: "晴",
+            weather_en: "sunny"
+        },
+        {
+            weather_cn: "多云",
+            weather_en: "cloudy"
+        },
+        {
+            weather_cn: "阴",
+            weather_en: "overcast"
+        },
+        {
+            weather_cn: "雷阵雨",
+            weather_en: "thunder_shower"
+        },
+        {
+            weather_cn: "阵雨",
+            weather_en: "shower"
+        },
+        {
+            weather_cn: "小雨",
+            weather_en: "light_rain"
+        },
+        {
+            weather_cn: "中雨",
+            weather_en: "rain"
+        },
+        {
+            weather_cn: "大雨",
+            weather_en: "heavy_rain"
+        },
+        {
+            weather_cn: "暴雨",
+            weather_en: "rainstorm"
+        },
+        {
+            weather_cn: "大雨-暴雨",
+            weather_en: "rainstorm2"
+        },
+    ];
+    const ret = mapList.find(v => v.weather_cn === keywords || v.weather_en === keywords);
+    try {
+        return type === 'cn' ? ret.weather_en : ret.weather_cn;
+    } catch(e) {
+        return 'default'
+    }
+};
