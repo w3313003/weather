@@ -1,0 +1,10 @@
+<view class="warp">
+    <map id="map" 
+        markers="{{markers}}" 
+        latitude="{{latitude}}" 
+        longitude="{{longitude}}"
+        bindregionchange="mapMoveHandler"
+        >
+    
+    </map>
+</view>

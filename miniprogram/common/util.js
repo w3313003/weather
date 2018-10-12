@@ -6,7 +6,7 @@ export const map_jsKey = '5dfddda2499a49ee2dd3ef5a2ff19b7a';
 /**
  * @param {*} areaName: string
  * @param {*} subdistrict: number 
- * @returns AreaInfo: object 返回高德城市信息
+ * @returns AreaInfo: promise 高德城市信息
  */
 export function getAreaInfo(areaName, subdistrict) {
     return new Promise((resolve, reject) => {
@@ -53,8 +53,7 @@ export function getWeather(city, type = 'live') {
                         },
                         fail(info) {
                             wx.showToast({
-                                title: '获取信息失败',
-                                icon: "fail",
+                                title: '1获取信息失败',
                                 duration: 1000
                             })
                             reject(info);
@@ -67,14 +66,14 @@ export function getWeather(city, type = 'live') {
         } else {
             myAmapFun.getWeather({
                 type,
+                city: "",
                 success(res) {
                     resolve(res);
                 },
                 fail(info) {
                     wx.showToast({
-                        title: '获取信息失败',
-                        icon: "fail",
-                        duration: 1000
+                        title: '2获取信息失败',
+                        duration: 10000
                     })
                     reject(info);
                 }

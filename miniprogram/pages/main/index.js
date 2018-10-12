@@ -63,12 +63,16 @@ Page({
             });
             return true;
         }).catch(e => {
+            console.log(e);
             if(e.errMsg.includes("getLocation:fail")) {
                 wx.showModal({
                     title: "自动定位失败",
                     content: "是否尝试手动选择地址?",
-                    success:() => {
-                        this.chooseCity()
+                    confirm:() => {
+                        this.chooseCity();
+                    },
+                    cancel: () => {
+
                     }
                 });
             }
@@ -163,7 +167,7 @@ Page({
         });
         animationOne.translate(0, 0).rotateZ(0).opacity(0).step()
         animationTwo.translate(0, 0).rotateZ(0).opacity(0).step()
-        animationThree.translate(0, 0).rotateZ(0).opacity(0).step()
+        animationThree.translate(0, 0).rotateZ(0).opacity(0).z()
         this.setData({
             animationOne: animationOne.export(),
             animationTwo: animationTwo.export(),
@@ -195,6 +199,7 @@ Page({
                         v.night_weather = translate(v.nightweather);
                         v.day = v.date.slice(5);
                     });
+                    console.log(res.forecast);
                     this.setData({
                         forecast: res.forecast,
                         dayTemp,
@@ -211,18 +216,18 @@ Page({
         })
     },
     onLoad() {
-        wx.getSetting({
-            success(res) {
-                if(!res.authSetting["scope.userLocation"]) {
-                    wx.authorize({
-                        scope: "scope.userLocation",
-                        success() {
-                            wx.getLocation();
-                        }
-                    })
-                }
-            }
-        });
+        // wx.getSetting({
+        //     success(res) {
+        //         if(!res.authSetting["scope.userLocation"]) {
+        //             wx.authorize({
+        //                 scope: "scope.userLocation",
+        //                 success() {
+        //                     wx.getLocation();
+        //                 }
+        //             })
+        //         }
+        //     }
+        // });
         this._initHandler().then(res => {
             if (!res) {
                 wx.showToast({

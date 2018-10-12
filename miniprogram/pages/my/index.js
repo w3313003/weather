@@ -32,6 +32,14 @@ Page({
         });
     },
     onShow() {
+        wx.checkIsSupportSoterAuthentication({
+            success(res) {
+                console.log(res);
+            },
+            fail(info) {
+                console.log(info);
+            }
+        })
     },
     /**
      * 页面相关事件处理函数--监听用户下拉动作

@@ -31,7 +31,7 @@
                         <view class='city' bindtap="chooseCity">
                             {{currentCityInfo.city}}
                         </view>
-                        <view class='tip' bindtap='relocate'>
+                        <view style='position: relative; z-index: 100' class='tip' bindtap='relocate'>
                             重新定位
                         </view>
                     </view>

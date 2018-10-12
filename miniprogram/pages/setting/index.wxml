@@ -1,0 +1,10 @@
+<view class="wrap">
+    <i-cell-group>
+        <i-cell title="Wi-Fi">
+            <i-switch value="{{is_wifiopen}}" bind:change="onChange" slot="footer">
+                <i-icon type="right" slot="open"></i-icon>
+                <i-icon type="close" slot="close"></i-icon>
+            </i-switch>
+        </i-cell>
+    </i-cell-group>
+</view>
